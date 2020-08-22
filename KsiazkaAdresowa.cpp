@@ -4,6 +4,11 @@
 
 using namespace std;
 
+KsiazkaAdresowa::KsiazkaAdresowa()
+{
+    uzytkownikManager.wczytajUzytkownikowZPliku();
+}
+
 void KsiazkaAdresowa::rejestracjaUzytkownika()
 {
     uzytkownikManager.rejestracjaUzytkownika();
