@@ -77,3 +77,8 @@ void UzytkownikManager::wypiszWszystkichUzytkownikow()
     }
     system("pause");
 }
+
+void UzytkownikManager::wczytajUzytkownikowZPliku()
+{
+    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+}
