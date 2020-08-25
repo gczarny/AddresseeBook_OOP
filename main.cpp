@@ -7,7 +7,7 @@ int main()
 {
     char wybor;
 
-    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt");
+    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
 
     while(true){
         if (ksiazkaAdresowa.idZalogowanegoUzytkownika == 0)
@@ -20,7 +20,6 @@ int main()
             cout << "9. Koniec programu" << endl;
             cout << "---------------------------" << endl;
             cout << "Twoj wybor: ";
-            //wybor = wybierzOpcjeZMenuGlownego();
             wybor = getch();
 
             switch (wybor)
@@ -30,6 +29,7 @@ int main()
                 break;
             case '2':
                 ksiazkaAdresowa.idZalogowanegoUzytkownika = ksiazkaAdresowa.logowanieUzytkownika();
+                ksiazkaAdresowa.idOstatniegoAdresata = ksiazkaAdresowa.wczytajAdresatowZalogowanegoUzytkownikaZPliku(ksiazkaAdresowa.idZalogowanegoUzytkownika);
                 break;
             case '9':
                 exit(0);
@@ -43,25 +43,29 @@ int main()
         else
         {
             system("cls");
+            cout << "id Ostatniego Adresata: " << ksiazkaAdresowa.idOstatniegoAdresata;
             cout << "    >>> MENU  UZYTKOWNIKA <<<" << endl;
             cout << "---------------------------" << endl;
-            cout << "1. Wypisz wszystkich na ekran" << endl;
-            cout << "2. Zmiana hasla" << endl;
-            cout << "8. Wyloguj" << endl;
+            cout << "1. Zmiana hasla" << endl;
+            cout << "2. Dodaj adresata" << endl;
+            cout << "3. Wypisz wszystkich adresatow na ekran" << endl;
+            cout << "9. Wyloguj" << endl;
             cout << "---------------------------" << endl;
             cout << "Twoj wybor: ";
             wybor = getch();
             switch (wybor)
             {
             case '1':
-                ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
-                break;
-            case '2':
                 ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika(ksiazkaAdresowa.idZalogowanegoUzytkownika);
                 break;
-            case '8':
-                ksiazkaAdresowa.idZalogowanegoUzytkownika = 0;
-                //adresaci.clear();
+            case '2':
+                ksiazkaAdresowa.idOstatniegoAdresata = ksiazkaAdresowa.dodajAdresata(ksiazkaAdresowa.idZalogowanegoUzytkownika, ksiazkaAdresowa.idOstatniegoAdresata);
+                break;
+            case '3':
+                ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+                break;
+            case '9':
+                ksiazkaAdresowa.wylogowanie();
                 break;
             }
         }
