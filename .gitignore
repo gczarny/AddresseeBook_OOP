@@ -2,6 +2,7 @@ bin/
 obj/
 plan/
 ks_obiekt.*
+!ks_obiekt.cbp
 Uzytkownicy.txt
 Adresaci.txt
 
