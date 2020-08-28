@@ -13,6 +13,8 @@ string MetodyPomocnicze::konwerjsaIntNaString(int liczba)
 
 string MetodyPomocnicze::wczytajLinie()
 {
+    cin.clear();
+    cin.sync();
     string wejscie = "";
     getline(cin, wejscie);
     return wejscie;

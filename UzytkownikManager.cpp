@@ -82,7 +82,6 @@ void UzytkownikManager::wypiszWszystkichUzytkownikow()
 int UzytkownikManager::logowanieUzytkownika()
 {
     string login = "", haslo = "";
-
     cout << endl << "Podaj login: ";
     login = MetodyPomocnicze::wczytajLinie();
 
