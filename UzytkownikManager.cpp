@@ -74,14 +74,9 @@ void UzytkownikManager::wypiszWszystkichUzytkownikow()
     }
     else
     {
-        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
+        cout << endl << "Nie ma uzytkownikow." << endl << endl;
     }
     system("pause");
-}
-
-void UzytkownikManager::wczytajUzytkownikowZPliku()
-{
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 }
 
 int UzytkownikManager::logowanieUzytkownika()
@@ -102,9 +97,10 @@ int UzytkownikManager::logowanieUzytkownika()
 
                 if(uzytkownicy[i].pobierzHaslo() == haslo)
                 {
+                    idZalogowanegoUzytkownika = uzytkownicy[i].pobierzId();
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    return uzytkownicy[i].pobierzId();
+                    return idZalogowanegoUzytkownika;
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
@@ -117,22 +113,46 @@ int UzytkownikManager::logowanieUzytkownika()
     return 0;
 }
 
-void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika)
+void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika()
 {
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
     noweHaslo = MetodyPomocnicze::wczytajLinie();
 
-    for(int i = 0; i < uzytkownicy.size(); i++)
+    if(czyUzytkownikJestZalogowany())
     {
-        if(uzytkownicy[i].pobierzId() == idZalogowanegoUzytkownika)
+        for(int i = 0; i < uzytkownicy.size(); i++)
         {
-            uzytkownicy[i].ustawHaslo(noweHaslo);
-            cout << "Haslo zostalo zmienione." << endl << endl;
+            if(uzytkownicy[i].pobierzId() == idZalogowanegoUzytkownika)
+            {
+                uzytkownicy[i].ustawHaslo(noweHaslo);
+                    cout << "Haslo zostalo zmienione." << endl << endl;
             system("pause");
+            }
         }
+        plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
     }
-    plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+    else
+    {
+        cout << "Aby zmienic haslo, nalezy sie zalogowac" << endl;
+        system("pause");
+    }
 }
 
+int UzytkownikManager::pobierzIdZalogowanegoUzytkownika()
+{
+    return idZalogowanegoUzytkownika;
+}
 
+bool UzytkownikManager::czyUzytkownikJestZalogowany()
+{
+    if(idZalogowanegoUzytkownika > 0)
+        return true;
+    else
+        return false;
+}
+
+void UzytkownikManager::wylogowanieUzytkownika()
+{
+    idZalogowanegoUzytkownika = 0;
+}

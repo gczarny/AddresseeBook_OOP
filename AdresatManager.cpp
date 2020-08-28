@@ -1,16 +1,31 @@
 #include <iostream>
 #include "AdresatManager.h"
 
-
 using namespace std;
 
-Adresat AdresatManager::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
+void AdresatManager::dodajAdresata()
 {
     Adresat adresat;
-    string nazwisko;
 
-    adresat.ustawId(++idOstatniegoAdresata);
-    adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
+    system("cls");
+    cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
+    adresat = podajDaneNowegoAdresata();
+
+    adresaci.push_back(adresat);
+    if(plikZAdresatami.dopiszAdresataDoPliku(adresat))
+        cout << "Nowy adresat zostal dodany" << endl;
+    else
+        cout << "Blad. Nie udalo sie dodac adresata do pliku" << endl;
+    system("pause");
+}
+
+
+Adresat AdresatManager::podajDaneNowegoAdresata()
+{
+    Adresat adresat;
+
+    adresat.ustawId(plikZAdresatami.pobierzIdOstatniegoAdresata() + 1);
+    adresat.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
 
     cout << "Podaj imie: ";
     adresat.ustawImie(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
@@ -28,21 +43,6 @@ Adresat AdresatManager::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, i
     adresat.ustawAdres(MetodyPomocnicze::wczytajLinie());
 
     return adresat;
-}
-
-
-int AdresatManager::dodajAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
-{
-    Adresat adresat;
-
-    system("cls");
-    cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
-    adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika, idOstatniegoAdresata);
-
-    adresaci.push_back(adresat);
-    plikZAdresatami.dopiszAdresataDoPliku(adresat);
-
-    return ++idOstatniegoAdresata;
 }
 
 void AdresatManager::wyswietlDaneAdresata(Adresat adresat)
@@ -71,15 +71,4 @@ void AdresatManager::wyswietlWszystkichAdresatow()
         cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
     }
     system("pause");
-}
-
-int AdresatManager::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika)
-{
-    int idOstatniegoAdresata = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
-    return idOstatniegoAdresata;
-}
-
-void AdresatManager::wylogowanie()
-{
-    adresaci.clear();
 }

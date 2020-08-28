@@ -17,33 +17,54 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
 int KsiazkaAdresowa::logowanieUzytkownika()
 {
     uzytkownikManager.logowanieUzytkownika();
+    if(uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+        adresatManager = new AdresatManager(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikManager.pobierzIdZalogowanegoUzytkownika());
+    }
 }
 
-void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
 {
-    uzytkownikManager.zmianaHaslaZalogowanegoUzytkownika(idZalogowanegoUzytkownika);
+    uzytkownikManager.zmianaHaslaZalogowanegoUzytkownika();
+}
+
+void KsiazkaAdresowa::wylogowanieUzytkownika()
+{
+    uzytkownikManager.wylogowanieUzytkownika();
+    //~KsiazkaAdresowa();
+    delete adresatManager;
+    adresatManager = NULL;
+}
+
+void KsiazkaAdresowa::dodajAdresata()
+{
+    if(uzytkownikManager.czyUzytkownikJestZalogowany())
+        adresatManager->dodajAdresata(); // -> poniewaz pracujemy na wskazniku
+
+    else
+    {
+        cout << "Aby dodac adresata, nalezy sie najpierw zalogowac" << endl;
+        system("pause");
+    }
 }
 
 void KsiazkaAdresowa::wyswietlWszystkichAdresatow()
 {
-    adresatManager.wyswietlWszystkichAdresatow();
+    if(uzytkownikManager.czyUzytkownikJestZalogowany())
+    {
+        adresatManager->wyswietlWszystkichAdresatow(); //
+    }
+    else
+    {
+        cout << "Aby zobaczyc adresatow, nalezy sie najpierw zalogowac" << endl;
+        system("pause");
+    }
 }
 
-void KsiazkaAdresowa::wylogowanie()
+bool KsiazkaAdresowa::czyUzytkownikJestZalogowany()
 {
-    idZalogowanegoUzytkownika = 0;
-    adresatManager.wylogowanie();
+    if(uzytkownikManager.czyUzytkownikJestZalogowany())
+        return true;
+    else
+        return false;
 }
-
-int KsiazkaAdresowa::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika)
-{
-    idOstatniegoAdresata = adresatManager.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
-    return idOstatniegoAdresata;
-}
-
-int KsiazkaAdresowa::dodajAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
-{
-    idOstatniegoAdresata = adresatManager.dodajAdresata(idZalogowanegoUzytkownika, idOstatniegoAdresata);
-    return idOstatniegoAdresata;
-}
-
