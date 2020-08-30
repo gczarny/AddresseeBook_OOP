@@ -17,6 +17,7 @@ public:
     static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
     static int wczytajLiczbeCalkowita();
     static char wczytajZnak();
+    static char wybierzOpcjeZMenuEdycja();
 };
 
 #endif
