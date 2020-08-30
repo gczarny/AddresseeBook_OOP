@@ -7,7 +7,7 @@ int main()
 {
     char wybor;
 
-    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
+    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt", "Adresaci_tymczasowi.txt");
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
     while(true){
         if(ksiazkaAdresowa.czyUzytkownikJestZalogowany() == false)
@@ -47,6 +47,7 @@ int main()
             cout << "1. Zmiana hasla" << endl;
             cout << "2. Dodaj adresata" << endl;
             cout << "3. Wypisz wszystkich adresatow na ekran" << endl;
+            cout << "4. Usun adresata" << endl;
             cout << "9. Wyloguj" << endl;
             cout << "---------------------------" << endl;
             cout << "Twoj wybor: ";
@@ -61,6 +62,9 @@ int main()
                 break;
             case '3':
                 ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+                break;
+            case '4':
+                ksiazkaAdresowa.usunWybranegoAdresata();
                 break;
             case '9':
                 ksiazkaAdresowa.wylogowanieUzytkownika();
