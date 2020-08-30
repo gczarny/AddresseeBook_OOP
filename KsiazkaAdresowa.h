@@ -40,4 +40,5 @@ public:
     void wylogowanieUzytkownika();
     bool czyUzytkownikJestZalogowany();
     void usunWybranegoAdresata();
+    void edytujWybranegoAdresata();
 };

@@ -51,9 +51,8 @@ void KsiazkaAdresowa::dodajAdresata()
 void KsiazkaAdresowa::wyswietlWszystkichAdresatow()
 {
     if(uzytkownikManager.czyUzytkownikJestZalogowany())
-    {
         adresatManager->wyswietlWszystkichAdresatow(); //
-    }
+
     else
     {
         cout << "Aby zobaczyc adresatow, nalezy sie najpierw zalogowac" << endl;
@@ -72,12 +71,24 @@ bool KsiazkaAdresowa::czyUzytkownikJestZalogowany()
 void KsiazkaAdresowa::usunWybranegoAdresata()
 {
     if(uzytkownikManager.czyUzytkownikJestZalogowany())
-    {
         adresatManager->usunWybranegoAdresata();
-    }
+
     else
     {
         cout << "Aby usunac adresatow, nalezy sie najpierw zalogowac" << endl;
+        system("pause");
+    }
+
+}
+
+void KsiazkaAdresowa::edytujWybranegoAdresata()
+{
+    if(uzytkownikManager.czyUzytkownikJestZalogowany())
+        adresatManager->edytujAdresata();
+
+    else
+    {
+        cout << "Aby edytowac adresatow, nalezy sie najpierw zalogowac" << endl;
         system("pause");
     }
 

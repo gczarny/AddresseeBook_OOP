@@ -26,6 +26,7 @@ class PlikZAdresatami
     void usunPlik(string nazwaPlikuZRozszerzeniem);
     int podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(int idUsuwanegoAdresata, int idOstatniegoAdresata);
     int pobierzZPlikuIdOstatniegoAdresata();
+    void edytujAdresataWPliku(Adresat adresat, string liniaZDanymiAdresata);
 
 public:
     PlikZAdresatami(string nazwaPlikuZAdresatami, string nazwaTymczasowegoPlikuZAdresatami)
@@ -34,11 +35,12 @@ public:
     {
         idOstatniegoAdresata = 0;
     };
-
     vector <Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     bool dopiszAdresataDoPliku(Adresat adresat);
     int pobierzIdOstatniegoAdresata();
     void usunWybranegoAdresataZPliku(int idUsuwanegoAdresata);
+    void zaktualizujDaneWybranegoAdresata(Adresat adresat);
+
 };
 
 #endif

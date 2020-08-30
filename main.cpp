@@ -48,6 +48,7 @@ int main()
             cout << "2. Dodaj adresata" << endl;
             cout << "3. Wypisz wszystkich adresatow na ekran" << endl;
             cout << "4. Usun adresata" << endl;
+            cout << "5. Edytuj adresata" << endl;
             cout << "9. Wyloguj" << endl;
             cout << "---------------------------" << endl;
             cout << "Twoj wybor: ";
@@ -65,6 +66,9 @@ int main()
                 break;
             case '4':
                 ksiazkaAdresowa.usunWybranegoAdresata();
+                break;
+            case '5':
+                ksiazkaAdresowa.edytujWybranegoAdresata();
                 break;
             case '9':
                 ksiazkaAdresowa.wylogowanieUzytkownika();
