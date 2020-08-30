@@ -24,8 +24,8 @@ class UzytkownikManager
     bool czyIstniejeLogin(string login);
 
 public:
-    UzytkownikManager(string nazwaPlikuZUzytkownikami)
-    : plikZUzytkownikami(nazwaPlikuZUzytkownikami)
+    UzytkownikManager(string nazwaPliku)
+    : plikZUzytkownikami(nazwaPliku)
     {
         idZalogowanegoUzytkownika = 0;
         uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
