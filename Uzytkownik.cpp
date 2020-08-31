@@ -16,8 +16,12 @@ void Uzytkownik::ustawLogin(string nowyLogin)
 
 void Uzytkownik::ustawHaslo(string noweHaslo)
 {
-    if(noweHaslo.length() > 4)
-        haslo = noweHaslo;
+    while(noweHaslo.length() <= 4)
+    {
+        cout << "Haslo powinno skladac sie przynajmniej z 5 dowolnych znakow lub liczb: ";
+        cin >> noweHaslo;
+    }
+    haslo = noweHaslo;
 }
 
 int Uzytkownik::pobierzId()

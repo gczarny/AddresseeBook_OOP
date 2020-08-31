@@ -19,7 +19,6 @@ Uzytkownik UzytkownikManager::podajDaneNowegoUzytkownika()
 {
     Uzytkownik uzytkownik;
     string login, haslo;
-    //uzytkownik.id = pobierzIdNowegoUzytkownika();
     uzytkownik.ustawId(pobierzIdNowegoUzytkownika());
 
     do
@@ -29,7 +28,7 @@ Uzytkownik UzytkownikManager::podajDaneNowegoUzytkownika()
         uzytkownik.ustawLogin(login);
     } while (czyIstniejeLogin(uzytkownik.pobierzLogin()) == true);
 
-    cout << "Podaj haslo: ";
+    cout << "Podaj haslo (haslo powinno skladac sie przynajmniej z 5 dowolnych znakow lub liczb): ";
     cin >> haslo;
     uzytkownik.ustawHaslo(haslo);
 
@@ -115,7 +114,7 @@ int UzytkownikManager::logowanieUzytkownika()
 void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika()
 {
     string noweHaslo = "";
-    cout << "Podaj nowe haslo: ";
+    cout << "Podaj nowe haslo (haslo powinno skladac sie przynajmniej z 5 dowolnych znakow lub liczb): ";
     noweHaslo = MetodyPomocnicze::wczytajLinie();
 
     if(czyUzytkownikJestZalogowany())
