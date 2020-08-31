@@ -113,6 +113,7 @@ int UzytkownikManager::logowanieUzytkownika()
 
 void UzytkownikManager::zmianaHaslaZalogowanegoUzytkownika()
 {
+    system("cls");
     string noweHaslo = "";
     cout << "Podaj nowe haslo (haslo powinno skladac sie przynajmniej z 5 dowolnych znakow lub liczb): ";
     noweHaslo = MetodyPomocnicze::wczytajLinie();
