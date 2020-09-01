@@ -34,17 +34,17 @@ bool PlikTekstowy::czyPlikJestPusty()
 bool PlikTekstowy::czyPlikTymczasowyJestPusty()
 {
     bool pusty = true;
-    fstream plikTekstowy;
-    plikTekstowy.open(pobierzNazwePlikuTymczasowego().c_str(), ios::app);
+    fstream plikTekstowyTymczasowy;
+    plikTekstowyTymczasowy.open(pobierzNazwePlikuTymczasowego().c_str(), ios::app);
 
-    if (plikTekstowy.good() == true)
+    if (plikTekstowyTymczasowy.good() == true)
     {
-        plikTekstowy.seekg(0, ios::end);
-        if (plikTekstowy.tellg() != 0)
+        plikTekstowyTymczasowy.seekg(0, ios::end);
+        if (plikTekstowyTymczasowy.tellg() != 0)
             pusty = false;
     }
 
-    plikTekstowy.close();
+    plikTekstowyTymczasowy.close();
     return pusty;
 }
 

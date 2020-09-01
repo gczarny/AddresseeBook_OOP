@@ -12,7 +12,7 @@ class PlikTekstowy
 
 public:
     PlikTekstowy(string nazwaPliku)
-    : NAZWA_PLIKU(nazwaPliku){}
+    : NAZWA_PLIKU(nazwaPliku){};
 
     PlikTekstowy(string nazwaPliku, string nazwaPlikuTymczasowego)
     : NAZWA_PLIKU(nazwaPliku),
